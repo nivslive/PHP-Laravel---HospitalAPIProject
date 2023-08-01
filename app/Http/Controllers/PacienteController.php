@@ -5,62 +5,31 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePacienteRequest;
 use App\Http\Requests\UpdatePacienteRequest;
 use App\Models\Paciente;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class PacienteController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StorePacienteRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Paciente $paciente)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Paciente $paciente)
-    {
-        //
+        return Paciente::create($request);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePacienteRequest $request, Paciente $paciente)
+    public function update(UpdatePacienteRequest $request, Paciente $paciente): ResponseFactory | JsonResponse
     {
-        //
-    }
+        $update = $paciente->fill($request->toArray())->update();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Paciente $paciente)
-    {
-        //
+        if(!$update) {
+            return response()->json(['message' => 'Erro ao atualizar paciente.'], 500);
+        }
+
+        return response()->json(['message' => 'Sucesso ao atualizar paciente.'], 200);
     }
 }

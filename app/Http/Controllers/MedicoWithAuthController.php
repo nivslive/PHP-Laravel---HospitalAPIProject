@@ -8,13 +8,13 @@ use App\Models\Medico;
 use App\Models\MedicoPaciente;
 use App\Models\Paciente;
 use Illuminate\Contracts\Routing\ResponseFactory;
-use Illuminate\Http\Client\Response;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 // use Illuminate\Http\Request;
 
 class MedicoWithAuthController extends Controller
 {
-    public function create(CreateMedicoWithAuthRequest $request): ResponseFactory | Response {
+    public function create(CreateMedicoWithAuthRequest $request): ResponseFactory | JsonResponse {
         $result = Medico::create($request);
         if (!$result) {
             return response()->json(['message' => 'Erro ao criar um médico'], 500);
@@ -28,7 +28,7 @@ class MedicoWithAuthController extends Controller
         return Cidade::find($id_cidade)->medicos()->get();
     }
 
-    public function vinculatePaciente(Request $request, $medico_id): ResponseFactory | Response {
+    public function vinculatePaciente(Request $request, $medico_id): ResponseFactory | JsonResponse {
         if(!$request->has('paciente_id')) {
             return response()->json(['message' => 'Erro no dado enviado.'], 500);
         }
