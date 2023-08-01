@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{CidadeController, MedicoController};
+use App\Http\Controllers\{AuthController, CidadeController, MedicoController};
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +17,7 @@ use App\Http\Controllers\{CidadeController, MedicoController};
 
 require_once("auth.php");
 
-Route::post('login', 'AuthController@login');
+Route::post('login', [AuthController::class, 'show']);
 
 
 Route::controller(CidadeController::class)->prefix('/cidades')

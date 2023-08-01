@@ -18,5 +18,4 @@ Route::group([
         Route::put('/pacientes/{id_paciente}', 'update');
     });
 
-    Route::get('/pacientes', 'UserController@addNewPaciente')->name('add-new-paciente');
 });
