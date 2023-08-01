@@ -13,13 +13,13 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if (auth()->attempt($credentials)) {
-            $user = User::where('email', $request->email)->first();
-            $token = auth()->fromUser($user);
-
-            return response()->json(['token' => $token]);
-        } else {
+        if (!auth()->attempt($credentials)) {
             return response()->json(['error' => 'Invalid credentials'], 401);
         }
+
+        $user = User::where('email', $request->email)->first();
+        $token = auth()->fromUser($user);
+
+        return response()->json(['token' => $token]);
     }
 }
