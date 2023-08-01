@@ -11,7 +11,7 @@ return new class extends Migration
     // // Pacientes
     public function up(): void
     {   
-        Schema::create('medico_paciente', function (Blueprint $table) {
+        Schema::create('medico_pacientes', function (Blueprint $table) {
             $table->id();
             
             //pacientes table
