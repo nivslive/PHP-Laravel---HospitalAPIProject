@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('cidades', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('nome', 100);
+            $table->string('estado', 100);
+            $table->timestamps(); //updated_at / created_at
+            $table->softDeletes(); //deleted_at
         });
     }
 

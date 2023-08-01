@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('pacientes', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string("nome", 100);
+            $table->string("cpf", 20);
+            $table->string("celular", 20);
+            $table->timestamps(); //updated_at / created_at
+            $table->softDeletes(); //deleted_at
         });
     }
 
