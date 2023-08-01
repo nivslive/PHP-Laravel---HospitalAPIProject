@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{CidadeController, MedicoController};
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+require_once("auth.php");
+
+Route::post('login', 'AuthController@login');
+
+
+Route::controller(CidadeController::class)->prefix('/cidades')
+->group(function() {
+    Route::get('/', 'listAll');
+});
+
+Route::controller(MedicoController::class)->prefix('/medicos')
+->group(function() {
+    Route::get('/', 'listAll');
 });
