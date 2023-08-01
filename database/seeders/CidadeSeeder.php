@@ -12,6 +12,6 @@ class CidadeSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        \App\Models\Cidade::factory(10)->create();
     }
 }

@@ -2,22 +2,31 @@
 
 namespace Database\Factories;
 
+use App\Models\Medico;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Medico>
- */
 class MedicoFactory extends Factory
 {
     /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Medico::class;
+
+    /**
      * Define the model's default state.
      *
-     * @return array<string, mixed>
+     * @return array
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            //
+            'nome' => $this->faker->name,
+            'especialidade' => $this->faker->jobTitle,
+            'cidade_id' => \App\Models\Cidade::factory()->create()->id,
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

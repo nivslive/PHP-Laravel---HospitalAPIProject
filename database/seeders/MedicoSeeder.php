@@ -12,6 +12,6 @@ class MedicoSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        \App\Models\Medico::factory(10)->create();
     }
 }

@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Paciente;
+use App\Models\MedicoPaciente;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class PacienteFactory extends Factory
+class MedicoPacienteFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Paciente::class;
+    protected $model = MedicoPaciente::class;
 
     /**
      * Define the model's default state.
@@ -22,9 +22,8 @@ class PacienteFactory extends Factory
     public function definition()
     {
         return [
-            'nome' => $this->faker->name,
-            'cpf' => $this->faker->unique()->numerify('###########'),
-            'celular' => $this->faker->unique()->numerify('###########'),
+            'paciente_id' => \App\Models\Paciente::factory()->create()->id,
+            'medico_id' => \App\Models\Medico::factory()->create()->id,
             'created_at' => now(),
             'updated_at' => now(),
         ];
