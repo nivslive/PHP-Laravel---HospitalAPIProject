@@ -8,7 +8,7 @@ Route::group([
     Route::controller(MedicoWithAuthController::class)->prefix('/cidades')
     ->group(function() {
         Route::get('cidades/{id_cidade}/medicos', 'listMedicosByCidade');
-        Route::get('medicos/{id_medico}/pacientes', 'vinculateMedicoOnPaciente');
+        Route::get('medicos/{id_medico}/pacientes', 'vinculatePaciente');
         Route::post('/medicos', 'create');
     });
     
