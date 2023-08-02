@@ -15,6 +15,7 @@ class MedicoTest extends TestCase
      */
     use RefreshDatabase;
 
+
     public function test_should_can_i_use_medicos_list_endpoint(): void
     {
         $response = $this->get('/medicos');
@@ -22,15 +23,35 @@ class MedicoTest extends TestCase
     }
 
     public function test_should_create_a_new_medico(): void {
-        $user = \App\Models\User::factory()->create();
+        
         \App\Models\Cidade::create([
             'nome' => 'bertioga',
             'estado' => 'SP',
         ]);
+
+        $user = \App\Models\User::factory()->create();
         $token = auth()->attempt(['email' => $user->email, 'password' => 'password']);
+
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])
             ->post('/medicos', ['nome' => 'test', 'cidade' => 'bertioga', 'especialidade' => 'Teste']);
-            
+
+        $response->assertStatus(200);
+    }
+
+    public function need_login(): void {}
+
+    public function test_list_medicos_by_cidade(): void {
+        
+        $cidade = \App\Models\Cidade::create([
+            'nome' => 'bertioga',
+            'estado' => 'SP',
+        ]);
+
+        $user = \App\Models\User::factory()->create();
+        $token = auth()->attempt(['email' => $user->email, 'password' => 'password']);
+
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token]);
+        $response = $response->get("/cidades/{$cidade->id}/medicos");
         $response->assertStatus(200);
     }
 
