@@ -10,16 +10,31 @@ use App\Models\Paciente;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 // use Illuminate\Http\Request;
 
 class MedicoWithAuthController extends Controller
 {
+
     public function create(CreateMedicoWithAuthRequest $request): ResponseFactory | JsonResponse {
-        $result = Medico::create($request);
-        if (!$result) {
-            return response()->json(['message' => 'Erro ao criar um médico'], 500);
+        
+        $cidade = Cidade::select('id')->where('nome', $request->input('cidade'))->first();
+        if(!$cidade) {
+            return response()->json(['message' => 'A cidade não existe.'], 500);  
         }
 
+        $data = $request
+                    ->merge(['cidade_id' => $cidade->id])
+                    ->except('_token');
+
+        
+        $result = Medico::create($data);
+        if (!$result) {
+            return response()->json(['message' => 'Erro no preenchimento dos dados ao criar um médico'], 500);
+        }
+
+        
+        $result->save();
         return response()->json(['message' => 'Você criou um médico com sucesso!'], 200);
     }
 

@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{AuthController, CidadeController, MedicoController};
+use App\Http\Controllers\{MedicoWithAuthController, AuthController, CidadeController, MedicoController};
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +15,7 @@ use App\Http\Controllers\{AuthController, CidadeController, MedicoController};
 |
 */
 
-require_once("auth.php");
+include_once("auth.php");
 
 Route::post('login', [AuthController::class, 'show']);
 
@@ -29,3 +29,23 @@ Route::controller(MedicoController::class)->prefix('/medicos')
 ->group(function() {
     Route::get('/', 'listAll');
 });
+
+
+//authenticated
+Route::middleware('auth:jwt')->group(function () {
+    
+    Route::controller(MedicoWithAuthController::class)->group(function() {
+        Route::get('/cidades/{id_cidade}/medicos', 'listMedicosByCidade');
+        Route::get('/medicos/{id_medico}/pacientes', 'vinculatePaciente');
+        Route::post('/medicos', 'create');
+    });
+    
+    Route::controller(PacienteWithAuthController::class)->group(function() {
+        Route::get('/medicos/{id_medico}/pacientes', 'listPacienteByMedico');
+        Route::post('/pacientes', 'create');
+        Route::put('/pacientes/{id_paciente}', 'update');
+    });
+
+});
+
+

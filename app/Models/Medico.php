@@ -9,7 +9,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Medico extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'nome',
+        'especialidade',
+        'cidade_id',
+    ];
     public function pacientes(): HasMany {
         return $this->hasMany(Paciente::class);
     }
