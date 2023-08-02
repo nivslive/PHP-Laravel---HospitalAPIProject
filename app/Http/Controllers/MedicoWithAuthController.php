@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateMedicoWithAuthRequest;
+use App\Http\Requests\VinculatePacienteMedicoWithAuthRequest;
 use App\Models\Cidade;
 use App\Models\Medico;
 use App\Models\MedicoPaciente;
@@ -38,12 +39,8 @@ class MedicoWithAuthController extends Controller
         return response()->json(['message' => 'Você criou um médico com sucesso!'], 200);
     }
 
-    public function listMedicosByCidade(int $id_cidade)
-    {
-        return Cidade::find($id_cidade)->medicos()->get();
-    }
-
-    public function vinculatePaciente(Request $request, $medico_id): ResponseFactory | JsonResponse {
+    public function vinculatePaciente(VinculatePacienteMedicoWithAuthRequest $request, $medico_id): ResponseFactory | JsonResponse {
+        
         if(!$request->has('paciente_id')) {
             return response()->json(['message' => 'Erro no dado enviado.'], 500);
         }
@@ -51,7 +48,7 @@ class MedicoWithAuthController extends Controller
         $paciente_id =  $request->input('paciente_id');
         
         $medicoPaciente = MedicoPaciente::where('medico_id', $medico_id)
-            ->where('paciente_id', $paciente_id);
+            ->where('paciente_id', $paciente_id)->first();
 
         if($medicoPaciente) {
             return response()->json(['message' => 'Já existe registro com esse paciente.'], 500);
@@ -79,5 +76,17 @@ class MedicoWithAuthController extends Controller
                 'data' => $data
             ]
             , 200);
+    }
+
+    public function pacientesList($medico_id) {
+
+        $medico = Medico::find($medico_id);
+        if (!$medico) {
+            return response()->json(['error' => 'Médico não encontrado'], 404);
+        }
+        
+        $pacientes = MedicoPaciente::where('medico_id', $medico_id)->get();
+
+        return response()->json(['message' => 'Pacientes do médico:' . $medico->nome, 'data' => $pacientes], 200);
     }
 }

@@ -40,21 +40,6 @@ class MedicoTest extends TestCase
 
     public function need_login(): void {}
 
-    public function test_list_medicos_by_cidade(): void {
-        
-        $cidade = \App\Models\Cidade::create([
-            'nome' => 'bertioga',
-            'estado' => 'SP',
-        ]);
-
-        $user = \App\Models\User::factory()->create();
-        $token = auth()->attempt(['email' => $user->email, 'password' => 'password']);
-
-        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token]);
-        $response = $response->get("/cidades/{$cidade->id}/medicos");
-        $response->assertStatus(200);
-    }
-
     public function test_should_return_medicos_list_endpoint(): void
     {
         $this->seed(MedicoSeeder::class); 

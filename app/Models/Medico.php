@@ -14,7 +14,5 @@ class Medico extends Model
         'especialidade',
         'cidade_id',
     ];
-    public function pacientes(): HasMany {
-        return $this->hasMany(Paciente::class);
-    }
+    
 }
