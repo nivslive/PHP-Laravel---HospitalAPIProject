@@ -41,7 +41,6 @@ Route::middleware('auth:jwt')->group(function () {
     });
     
     Route::controller(PacienteWithAuthController::class)->group(function() {
-        Route::get('/medicos/{id_medico}/pacientes', 'listPacienteByMedico');
         Route::post('/pacientes', 'create');
         Route::put('/pacientes/{id_paciente}', 'update');
     });
