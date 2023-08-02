@@ -22,14 +22,14 @@ class PacienteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePacienteRequest $request, Paciente $paciente): ResponseFactory | JsonResponse
-    {
-        $update = $paciente->fill($request->toArray())->update();
+    // public function update(UpdatePacienteRequest $request, Paciente $paciente): ResponseFactory | JsonResponse
+    // {
+    //     $update = $paciente->fill($request->toArray())->update();
 
-        if(!$update) {
-            return response()->json(['message' => 'Erro ao atualizar paciente.'], 500);
-        }
+    //     if(!$update) {
+    //         return response()->json(['message' => 'Erro ao atualizar paciente.'], 500);
+    //     }
 
-        return response()->json(['message' => 'Sucesso ao atualizar paciente.'], 200);
-    }
+    //     return response()->json(['message' => 'Sucesso ao atualizar paciente.'], 200);
+    // }
 }
