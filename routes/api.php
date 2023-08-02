@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{MedicoWithAuthController, AuthController, CidadeController, MedicoController};
+use App\Http\Controllers\{MedicoWithAuthController, PacienteWithAuthController, AuthController, CidadeController, MedicoController};
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +15,9 @@ use App\Http\Controllers\{MedicoWithAuthController, AuthController, CidadeContro
 |
 */
 
-include_once("auth.php");
+// include_once("auth.php");
 
-Route::post('login', [AuthController::class, 'show']);
+Route::post('/login', [AuthController::class, 'login']);
 
 
 Route::controller(CidadeController::class)->prefix('/cidades')
