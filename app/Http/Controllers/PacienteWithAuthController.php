@@ -25,23 +25,21 @@ class PacienteWithAuthController extends Controller
     }
 
         
-    public function update(UpdatePacienteWithAuthRequest $request, $paciente_id): ResponseFactory | JsonResponse {
+    public function update(UpdatePacienteWithAuthRequest $request, $paciente_id) // : ResponseFactory | JsonResponse 
+    {
+        dump($request);
+        // $paciente = Paciente::where('id', $paciente_id);
+        // if(!$paciente) {
+        //     return response()->json(['message' => 'Não há esse paciente cadastrado na base de dados!'], 404); 
+        // }
 
-        $paciente = Paciente::find($paciente_id);
-        if(!$paciente) {
-            return response()->json(['message' => 'Não há esse paciente cadastrado na base de dados!'], 404); 
-        }
+        // $result = $paciente->update($request->except('_token'));
 
-        $data = $request
-            ->except('_token');
-        
-        $result = $paciente->fill($data);
-        if (!$result) {
-            return response()->json(['message' => 'Erro no preenchimento dos dados ao criar um médico'], 500);
-        }
+        // if (!$result) {
+        //     return response()->json(['message' => 'Erro no preenchimento dos dados ao criar um médico'], 500);
+        // }
 
-        $result->save();
-        return response()->json(['message' => 'Você criou um paciente com sucesso!'], 200);
+        // return response()->json(['message' => 'Você criou um paciente com sucesso!'], 200);
     }
 
 }
