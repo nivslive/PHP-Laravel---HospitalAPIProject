@@ -32,3 +32,7 @@ CREATE DATABASE IF NOT EXISTS testing;
 ### Para executar os testes do Laravel, utilize o comando Artisan:
 
 php artisan test
+
+
+### DOCKER SUBIU, MAS AS PORTAS ESTÃO OCUPADAS?
+kill -9 $(lsof -t -i :PORT_NUMBER)
