@@ -28,6 +28,14 @@ CREATE DATABASE IF NOT EXISTS hospital_api;
 CREATE DATABASE IF NOT EXISTS testing;
 
 
+
+### Cobertura de tests:
+
+
+
+<img src="https://img001.prntscr.com/file/img001/YL0F2u1MQxmNycXj0EZNGg.png">
+
+
 ## EXECUTANDO TESTES 
 ### Para executar os testes do Laravel, utilize o comando Artisan:
 
