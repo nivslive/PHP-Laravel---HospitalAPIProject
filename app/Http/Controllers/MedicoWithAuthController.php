@@ -10,8 +10,6 @@ use App\Models\MedicoPaciente;
 use App\Models\Paciente;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 // use Illuminate\Http\Request;
 
 class MedicoWithAuthController extends Controller

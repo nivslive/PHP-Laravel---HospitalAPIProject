@@ -22,8 +22,8 @@ class MedicoFactory extends Factory
     public function definition()
     {
         return [
-            'nome' => $this->faker->name,
-            'especialidade' => $this->faker->jobTitle,
+            'nome' => fake()->name(),
+            'especialidade' => fake()->jobTitle(),
             'cidade_id' => \App\Models\Cidade::factory()->create()->id,
             'created_at' => now(),
             'updated_at' => now(),
