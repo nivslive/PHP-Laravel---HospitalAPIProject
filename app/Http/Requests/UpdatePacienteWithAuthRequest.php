@@ -22,9 +22,9 @@ class UpdatePacienteWithAuthRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => 'string|max:100',
-            'cpf' => 'string|max:20',
-            'celular' => 'string|max:20',
+            'nome' => 'string|max:100|nullable',
+            'cpf' => 'string|max:20|nullable',
+            'celular' => 'string|max:20|nullable',
         ];
     }
 

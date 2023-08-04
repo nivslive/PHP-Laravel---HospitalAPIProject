@@ -16,8 +16,9 @@ class MedicoWithAuthController extends Controller
 {
 
     public function create(CreateMedicoWithAuthRequest $request): ResponseFactory | JsonResponse {
-        
-        $cidade = Cidade::select('id')->where('nome', $request->input('cidade'))->first();
+        $cidade = Cidade::select('id')->where('id', $request->input('cidade_id'))->first();
+        // caso gostaria que captasse a cidade pelo nome.
+        //$cidade = Cidade::select('id')->where('nome', $request->input('cidade_id'))->first();
         if(!$cidade) {
             return response()->json(['message' => 'A cidade não existe.'], 500);  
         }
@@ -34,7 +35,7 @@ class MedicoWithAuthController extends Controller
 
         
         $result->save();
-        return response()->json(['message' => 'Você criou um médico com sucesso!'], 200);
+        return response()->json(['message' => 'Você criou um médico com sucesso!', 'data' => $result], 200);
     }
 
     public function vinculatePaciente(VinculatePacienteMedicoWithAuthRequest $request, $medico_id): ResponseFactory | JsonResponse {

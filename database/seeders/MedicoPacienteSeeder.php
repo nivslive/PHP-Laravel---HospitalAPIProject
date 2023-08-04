@@ -12,6 +12,6 @@ class MedicoPacienteSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\MedicoPaciente::factory(10)->create();
+        // \App\Models\MedicoPaciente::factory(10)->create();
     }
 }

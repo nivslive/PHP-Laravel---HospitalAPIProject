@@ -21,7 +21,7 @@ class CreateMedicoWithAuthRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cidade' => 'required|string',
+            'cidade_id' => 'required',
             'especialidade' => 'required|string|max:100',
             'nome' => 'required|string|max:100',
         ];
@@ -36,8 +36,7 @@ class CreateMedicoWithAuthRequest extends FormRequest
     {
         return [
 
-            'cidade.required' => 'O campo cidade é obrigatório.',
-            'cidade.string' => 'O campo cidade deve ser uma string.',
+            'cidade_id.required' => 'O campo cidade_id é obrigatório.',
 
             'especialidade.required' => 'O campo especialidade é obrigatório.',
             'especialidade.string' => 'O campo especialidade deve ser uma string.',

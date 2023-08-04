@@ -17,28 +17,45 @@ class PacienteWithAuthController extends Controller
 
         $result = Paciente::create($data);
         if (!$result) {
-            return response()->json(['message' => 'Erro no preenchimento dos dados ao criar um médico'], 500);
+            return response()->json(['message' => 'Erro no preenchimento dos dados ao criar um paciente.'], 500);
         }
 
         $result->save();
-        return response()->json(['message' => 'Você criou um paciente com sucesso!'], 200);
+        return response()->json(['message' => 'Você criou um paciente com sucesso!', 'data' => $result], 200);
     }
 
         
-    public function update(UpdatePacienteWithAuthRequest $request, $paciente_id) // : ResponseFactory | JsonResponse 
+    public function update(UpdatePacienteWithAuthRequest $request, $paciente_id)
     {
+        $paciente = Paciente::find($paciente_id);
 
-        $paciente = Paciente::where('id', $paciente_id);
-        if(!$paciente) {
-            return response()->json(['message' => 'Não há esse paciente cadastrado na base de dados!'], 404); 
+        if (!$paciente) {
+            return response()->json(['message' => 'Não há esse paciente cadastrado na base de dados!'], 404);
         }
 
-        $result = $paciente->update($request->except('_token'));
+        if ($request->has('celular')) {
+            $paciente->celular = $request->input('celular');
+        }
+
+        if ($request->has('cpf')) {
+            $paciente->cpf = $request->input('cpf');
+        }
+
+        if ($request->has('nome')) {
+            $paciente->nome = $request->input('nome');
+        }
+
+        $result = $paciente->save();
+
         if (!$result) {
-            return response()->json(['message' => 'Erro no preenchimento dos dados ao criar um médico'], 500);
+            return response()->json(['message' => 'Erro no preenchimento dos dados ao atualizar o paciente'], 500);
         }
 
-        return response()->json(['message' => 'Você criou um paciente com sucesso!'], 200);
+
+        $updatedPaciente = Paciente::find($paciente_id);
+
+        return response()->json(['message' => 'Você atualizou o paciente com sucesso!', 'data' => $updatedPaciente], 200);
     }
+
 
 }

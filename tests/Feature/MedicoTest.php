@@ -31,9 +31,9 @@ class MedicoTest extends TestCase
 
         $user = \App\Models\User::factory()->create();
         $token = auth()->attempt(['email' => $user->email, 'password' => 'password']);
-
+        //'cidade' => 'bertioga'
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])
-            ->post('/medicos', ['nome' => 'test', 'cidade' => 'bertioga', 'especialidade' => 'Teste']);
+            ->post('/medicos', ['nome' => 'test', 'cidade_id' => 1, 'especialidade' => 'Teste']);
 
         $response->assertStatus(200);
     }
