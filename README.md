@@ -1,6 +1,6 @@
 # Hospital API Project
 
-Bem-vindo ao **Hospital API Project**! Este repositório contém um projeto incrível desenvolvido em PHP Laravel, com uma API para gerenciamento de informações hospitalares. Abaixo estão as instruções para ajudá-lo a começar.
+Bem-vindo ao **Hospital API Project**! Logo abaixo terá todo o procedimento de instalação e inicialização do projeto localmente.
 
 ## Configuração Inicial
 
