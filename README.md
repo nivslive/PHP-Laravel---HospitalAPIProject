@@ -5,7 +5,7 @@ Bem-vindo ao **Hospital API Project**! Logo abaixo terá todo o procedimento de 
 ## Configuração Inicial
 
 ### 1. Clone este repositório para o seu ambiente local:
-git clone https://github.com/nivslive/PHP-Laravel---HospitalAPIProject.git
+git clone https://github.com/nivslive/PHP-Laravel---HospitalAPIProject.git &&
 cd PHP-Laravel---HospitalAPIProject
 
 ### 2. Crie o arquivo .env baseado no .env.example e configure as variáveis de ambiente, incluindo as configurações do banco de dados.
