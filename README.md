@@ -6,7 +6,7 @@ Bem-vindo ao **Hospital API Project**! Este repositório contém um projeto incr
 
 ### 1. Clone este repositório para o seu ambiente local:
 git clone https://github.com/nivslive/PHP-Laravel---HospitalAPIProject.git
-cd PHP-Laravel---HospitalAPIProject ```
+cd PHP-Laravel---HospitalAPIProject
 
 ### 2. Crie o arquivo .env baseado no .env.example e configure as variáveis de ambiente, incluindo as configurações do banco de dados.
 
@@ -23,6 +23,9 @@ composer install
 
 Acesse o ambiente do banco de dados no Docker.
 Execute os seguintes comandos SQL para criar os bancos de dados necessários:
+
+CREATE DATABASE IF NOT EXISTS hospital_api;
+CREATE DATABASE IF NOT EXISTS testing;
 
 
 ## EXECUTANDO TESTES 
