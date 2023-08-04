@@ -7,6 +7,7 @@ namespace Database\Seeders;
 // use Database\Factories\MedicoFactory;
 // use Database\Factories\MedicoPacienteFactory;
 // use Database\Factories\PacienteFactory;
+use App\Models\User;
 use Database\Seeders\{PacienteSeeder, MedicoPacienteSeeder, MedicoSeeder, CidadeSeeder};
 use Illuminate\Database\Seeder;
 
@@ -17,6 +18,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        // for testings
+        User::factory()->create([
+            'email' => 'admin@test.com',
+        ]);
+
         $this->call([
             CidadeSeeder::class,
             PacienteSeeder::class,

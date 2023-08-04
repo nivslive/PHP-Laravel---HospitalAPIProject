@@ -19,6 +19,12 @@ use App\Http\Controllers\{MedicoWithAuthController, PacienteWithAuthController, 
 
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::prefix('/login')->group(function(){
+    Route::get('/', function() {
+        return response()->json(['message' => "Você precisa se logar. Para se logar, faça uma requisição POST para /login, com o email e a senha no corpo da requisição."], 300);
+    })->name('login');
+
+});
 
 Route::controller(CidadeController::class)->prefix('/cidades')
 ->group(function() {
