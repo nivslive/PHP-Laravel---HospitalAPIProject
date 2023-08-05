@@ -33,8 +33,7 @@ CREATE DATABASE IF NOT EXISTS testing;
 ENVIROMENTS:
 | Variável        | Valor                       |
 |-----------------|-----------------------------|
-| {{token}}       | [TOKEN VIRÁ DA AUTENTICAÇÃO |
-                     NO PATH /LOGIN]            |
+| {{token}}       | [TOKEN VIRÁ DO PATH /LOGIN] |
 | {{dominio}}     | http://127.0.0.1:8000       |
 | {{id_paciente}} | 1                           |
 | {{id_medico}}   | 1                           |
