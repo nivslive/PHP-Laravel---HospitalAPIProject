@@ -28,9 +28,26 @@ CREATE DATABASE IF NOT EXISTS hospital_api;
 CREATE DATABASE IF NOT EXISTS testing;
 
 
+## TESTES COM POSTMAN (CASE TESTE DE TESTE DE API COM COLLECTION)
+
+ENVIROMENTS:
+| Variável        | Valor                       |
+|-----------------|-----------------------------|
+| {{token}}       | [TOKEN VIRÁ DA AUTENTICAÇÃO |
+                     NO PATH /LOGIN]            |
+| {{dominio}}     | http://127.0.0.1:8000       |
+| {{id_paciente}} | 1                           |
+| {{id_medico}}   | 1                           |
+
+
+<img src="https://img001.prntscr.com/file/img001/Le86X_NXSTiChbkRrML3kA.png">
+<img src="https://img001.prntscr.com/file/img001/L084t_oZQi2UJv5qi_Ihhg.png">
+<img src="https://img001.prntscr.com/file/img001/kYRWF3biQjiuZMDaYAZOyg.png">
 
 ### Cobertura de tests:
 
+## OBS: Não irá funcionar os testes sem subir um banco de dados testing
+CREATE DATABASE IF NOT EXISTS testing;
 
 
 <img src="https://img001.prntscr.com/file/img001/YL0F2u1MQxmNycXj0EZNGg.png">
