@@ -10,6 +10,12 @@ cd PHP-Laravel---HospitalAPIProject
 
 ### 2. Crie o arquivo .env baseado no .env.example e configure as variáveis de ambiente, incluindo as configurações do banco de dados.
 
+### Crie o secret do jwt
+php artisan jwt:secret
+
+### Crie a key do projeto
+php artisan key:generate
+
 ### Instale as dependências do Composer:
 composer install
 
